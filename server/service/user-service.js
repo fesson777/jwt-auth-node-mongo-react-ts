@@ -56,7 +56,6 @@ class UserService {
       throw ApiError.BadRequest('Wrong password, try again')
     }
     const userDto = new UserDto(user)
-
     const tokens = tokenService.generateTokens({ ...userDto })
 
     await tokenService.saveToken(userDto.id, tokens.refreshToken)
@@ -72,9 +71,31 @@ class UserService {
     const users = await UserModel.find()
     return users
   }
+
   async deleteUser(email) {
+    console.log(email)
+
     const users = await UserModel.deleteOne({ email })
     return users
+  }
+
+  async refresh(refreshToken) {
+    if (!refreshToken) {
+      throw ApiError.UnautorizedError()
+    }
+    const userData = tokenService.validateRefreshToken(refreshToken)
+    const tokenFromDB = await tokenService.findToken(refreshToken)
+
+    if (!tokenFromDB || !userData) {
+      throw ApiError.UnautorizedError()
+    }
+
+    const user = await UserModel.findById(userData.id)
+    const userDto = new UserDto(user)
+    const tokens = tokenService.generateTokens({ ...userDto })
+
+    await tokenService.saveToken(userDto.id, tokens.refreshToken)
+    return { ...tokens, user: userDto }
   }
 }
 
