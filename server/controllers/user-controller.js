@@ -79,8 +79,6 @@ class UserController {
   }
 
   async deleteUsers(req, res, next) {
-    console.log(req)
-
     try {
       const { email } = req.body
       const users = await userService.deleteUser(email)

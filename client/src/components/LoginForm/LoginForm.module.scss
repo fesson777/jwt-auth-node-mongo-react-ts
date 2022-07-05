@@ -1,0 +1,22 @@
+.root {
+  // display: 'flex';
+  // align-items: 'center';
+  // justify-content: 'center';
+  // min-height: 100%;
+
+  .paper {
+    padding: 24px;
+    width: 400px;
+    margin: 0 auto;
+    margin-top: 240px;
+
+    .btn {
+      display: flex;
+      justify-content: space-between;
+      button {
+        padding: 12px 24px;
+        width: 160px;
+      }
+    }
+  }
+}

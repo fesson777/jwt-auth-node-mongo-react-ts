@@ -73,7 +73,7 @@ class UserService {
   }
 
   async deleteUser(email) {
-    console.log(email)
+    console.log('=======', email)
 
     const users = await UserModel.deleteOne({ email })
     return users

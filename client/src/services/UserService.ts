@@ -7,6 +7,8 @@ export default class UserService {
     return $api.get<IUser[]>('/users')
   }
   static async deleteUser(email: string): Promise<AxiosResponse<IUser[]>> {
-    return $api.delete('/users')
+    return $api.delete('/users', {
+      data: { email },
+    })
   }
 }

@@ -1,0 +1,36 @@
+.root {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  .main_container {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+.header_root {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 56px;
+  border-bottom: 1px solid black;
+
+  .logo {
+    display: inline-flex;
+    align-items: center;
+    img {
+      height: 48px;
+      width: auto;
+    }
+  }
+
+  .auth {
+    display: flex;
+    align-items: center;
+  }
+}
